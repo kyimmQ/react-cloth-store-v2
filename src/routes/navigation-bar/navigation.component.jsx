@@ -1,7 +1,6 @@
 // @ts-nocheck
-import React, { useContext } from "react";
-import { UserContext } from "../../contexts/user.context";
-import { CartContext } from "../../contexts/cart.context";
+import React from "react";
+
 
 import { Outlet, Link } from "react-router-dom";
 import { signOutUser } from "../../utils/firebase/firebase";
@@ -10,10 +9,13 @@ import { ReactComponent as CrownLogo } from "../../assets/crown.svg";
 import "./navigation.styles.scss";
 import CartIcon from "../../components/cart-icon/cart-icon.component";
 import CartDropdown from "../../components/cart-dropdown/cart-dropdown.component";
+import { useSelector } from "react-redux";
+import { selectUser } from "../../redux-store/user/user.selector";
+import { selectIsCartOpen } from "../../redux-store/cart/cart.selector";
 
 const Navigation = (props) => {
-  const { currentUser } = useContext(UserContext);
-  const { isCartOpen } = useContext(CartContext);
+  const  currentUser  = useSelector(selectUser);
+  const isCartOpen  = useSelector(selectIsCartOpen);
   return (
     <>
       <nav className="navigation">
